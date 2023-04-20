@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('status', 5)->default('open');
             $table->string('lokasi', 15)->default('Gereja Paskalis');
             $table->string('app', 15);
-            $table->bool('published')->default(false);
+            $table->boolean('published')->default(false);
             $table->timestamps();
         });
     }
