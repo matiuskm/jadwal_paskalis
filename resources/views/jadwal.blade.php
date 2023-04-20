@@ -6,7 +6,7 @@
   </x-slot>
 
   <div class="py-12 px-6">
-      <div class="grid gap-4 md:grid-cols-4 sm:grid-cols-1">
+      <div class="grid gap-4 max-w-7xl mx-auto sm:px-6 lg:px-8 lg:grid-cols-3 sm:grid-cols-1">
         @foreach ($jadwal as $j)
           <div class="grid card bg-transparent dark:bg-base-300 rounded-box place-items-center mt-5">
             <div class="card w-full warna-{{$j->warna}} text-primary-content">
