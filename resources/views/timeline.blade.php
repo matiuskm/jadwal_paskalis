@@ -7,13 +7,13 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            @can('create')
+            @can('create_tweet')
             <div class="card bg-white dark:bg-gray-800 shadow-xl">
                 <div class="card-body">
                     <form action="{{route('tweets.store')}}" method="post">
                         @csrf
-                        <textarea name="content" id="" cols="30" rows="3" class="textarea textarea-bordered bg-white dark:bg-gray-800 w-full" placeholder="Apa yang kamu pikirin?"></textarea>
-                        <input type="submit" value="Tweet" class="btn btn-primary">
+                        <textarea name="content" id="" cols="30" rows="3" class="textarea textarea-bordered bg-white dark:bg-gray-800 w-full" placeholder="Informasi satu arah dari admin ke user"></textarea>
+                        <input type="submit" value="Post" class="btn btn-primary mt-4">
                     </form>
                 </div>
             </div>
