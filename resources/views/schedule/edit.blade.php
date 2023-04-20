@@ -69,8 +69,8 @@
             <div class="mt-4">
               <x-input-label for="petugas" :value="__('Petugas')" />
               <select x-cloak id="nama" class="select w-full">
-                @foreach ($nama as $n)
-                  <option value="{{ $n->id }}" @if (in_array($n->id, $schedule->petugas)) {{"selected"}} @endif>{{ $n->name }}</option>
+                @foreach ($nama as $id => $name)
+                  <option value="{{ $id }}" @if (in_array($id, $schedule->petugas)) {{"selected"}} @endif>{{ $name }}</option>
                 @endforeach
               </select>
               <x-multiple-select :name="__('nama')" :placeholder="__('Pilih Petugas')" />              

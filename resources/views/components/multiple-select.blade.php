@@ -24,7 +24,7 @@
               </div>
             </template>
             <div x-show="selected.length == 0" class="flex-1">
-              <input placeholder="{{$placeholder}}" readonly class="bg-transparent p-1 px-2 appearance-none outline-none h-full w-full text-gray-800 dark:text-white" x-bind:value="selectedValues()">
+              <input placeholder="{{$placeholder}}" x-model="search" class="bg-transparent p-1 px-2 appearance-none outline-none h-full w-full text-gray-800 dark:text-white" x-bind:value="selectedValues()">
             </div>
           </div>
           <div class="dark:bg-gray-800 text-gray-300 w-8 py-1 pl-2 pr-1 border-l flex items-center border-gray-200 svelte-1l8159u">
