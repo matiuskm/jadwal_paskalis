@@ -37,11 +37,11 @@ Route::get('/timeline', TimelineController::class)->middleware(['auth', 'verifie
 Route::get('/jadwal', JadwalController::class)->middleware(['auth', 'verified'])->name('jadwal');
 
 Route::middleware('auth')->group(function () {
-    Route::get('schedule', ScheduleCreateController::class)->name('schedule.create');
-    Route::post('schedule', ScheduleStoreController::class)->name('schedule.store');
-    Route::get('schedule/{id}/edit', ScheduleEditController::class)->name('schedule.edit');
-    Route::put('schedule/{id}', ScheduleUpdateController::class)->name('schedule.update');
-    Route::delete('schedule/{id}', ScheduleDeleteController::class)->name('schedule.destroy');
+    Route::get('schedule', ScheduleCreateController::class)->middleware('can:buat_jadwal')->name('schedule.create');
+    Route::post('schedule', ScheduleStoreController::class)->middleware('can:buat_jadwal')->name('schedule.store');
+    Route::get('schedule/{id}/edit', ScheduleEditController::class)->middleware('can:buat_jadwal')->name('schedule.edit');
+    Route::put('schedule/{id}', ScheduleUpdateController::class)->middleware('can:buat_jadwal')->name('schedule.update');
+    Route::delete('schedule/{id}', ScheduleDeleteController::class)->middleware('can:buat_jadwal')->name('schedule.destroy');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

@@ -6,12 +6,13 @@
   </x-slot>
 
   <div class="py-12 px-6">
-      <div class="grid gap-4 md:grid-cols-3 sm:grid-cols-1">
+      <div class="grid gap-4 md:grid-cols-4 sm:grid-cols-1">
         @foreach ($jadwal as $j)
           <div class="grid card bg-transparent dark:bg-base-300 rounded-box place-items-center mt-5">
             <div class="card w-full warna-{{$j->warna}} text-primary-content">
               <div class="card-body">
                 <div class="card-actions justify-end">
+                  <span class="font-black text-xl">@if (!$j->published) {{"DRAFT"}} @endif</span>
                   @can('update', $j)
                     <a href="{{ route('schedule.edit', $j->id) }}" class="btn btn-square btn-sm" title="Ubah Jadwal">
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -40,7 +41,7 @@
                     <li>{{$petugas->name}}</li>
                   @endforeach
                 </ol>
-                <p class="text-xs mt-5"><span class="font-black">Status: </span> @if ($j->status == 'open') {{"Petugas masih kurang ".($j->jml_petugas - count($j->petugas))." orang."}} @else {{"Petugas lengkap."}} @endif</p>
+                <p class="text-xs mt-5"><span class="font-black">Status: </span> @if ($j->status == 'open') {{"Petugas masih kurang ".($j->jml_petugas - count($j->petugas))." orang."}} @else {{"Petugas lengkap."}} @endif {{ '('.count($j->petugas).'/'.$j->jml_petugas.')' }}</p>
               </div>
             </div>
           </div>

@@ -26,12 +26,12 @@ class ScheduleStoreController extends Controller
         unset($request['nama']);
         unset($request['draft']);
         unset($request['publish']);
-        $petugas = ','.implode(",", request('nama')).',';
+        $petugas = explode(",", request('nama'));
         $request['app'] = auth()->user()->app ?: request('app');
-        $request['petugas'] = $petugas;
+        $request['petugas'] = ','.request('nama').',';
         $request['published'] = request('publish') ? true : false;
         if (!empty(request('nama')))
-            $request['status'] = count(request('nama')) < request('jml_petugas') ? 'open' : 'close';
+            $request['status'] = count($petugas) < request('jml_petugas') ? 'open' : 'close';
         
         Schedule::create($request);
 

@@ -30,12 +30,13 @@ class ScheduleUpdateController extends Controller
         unset($request['draft']);
         unset($request['publish']);
         $petugas = explode(",", request('nama'));
-        $request['app'] = auth()->user()->app;
+        $request['app'] = auth()->user()->app ?: request('app');
         $request['petugas'] = ','.request('nama').',';
         $request['published'] = request('publish') ? true : false;
-        $request['status'] = count($petugas) < request('jml_petugas') ? 'open' : 'close';
+        if (!empty(request('nama')))
+            $request['status'] = count($petugas) < request('jml_petugas') ? 'open' : 'close';
 
         $schedule->update($request);
-        return redirect()->route('schedule')->with('status', 'schedule-created');
+        return redirect()->route('jadwal')->with('status', 'schedule-created');
     }
 }

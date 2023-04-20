@@ -1,7 +1,7 @@
 @props(['name', 'placeholder'])
 
 <div x-data="dropdown()" x-init="init('{{$name}}')" class="w-full flex flex-col items-center mx-auto">
-  <input name="{{$name}}[]" type="hidden" x-bind:value="selectedValues()" class="dark:text-gray">
+  <input name="{{$name}}" type="hidden" x-bind:value="selectedValues()" class="dark:text-gray">
   <div class="inline-block relative w-full">
     <div class="flex flex-col items-center relative">
       <div x-on:click="open" class="w-full">
