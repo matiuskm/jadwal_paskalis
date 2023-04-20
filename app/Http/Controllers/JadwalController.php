@@ -14,7 +14,9 @@ class JadwalController extends Controller
      */
     public function __invoke()
     {
-        $jadwal = Schedule::where(DB::raw('timestamp(tgl_jadwal, jam_jadwal)'), '>=', date('Y-m-d H:i'))->where('app', auth()->user()->app)->get();
+        if (auth()->user()->role == 'admin')
+            $jadwal = Schedule::where(DB::raw('timestamp(tgl_jadwal, jam_jadwal)'), '>=', date('Y-m-d H:i'))->get();
+        else $jadwal = Schedule::where(DB::raw('timestamp(tgl_jadwal, jam_jadwal)'), '>=', date('Y-m-d H:i'))->where('app', auth()->user()->app)->get();
         foreach($jadwal as $j) {
             $nama = User::select('name')->whereIn('id', explode(',', substr($j->petugas, 1, -1)))->get();
             if (!empty($nama))

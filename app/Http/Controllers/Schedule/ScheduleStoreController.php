@@ -27,7 +27,7 @@ class ScheduleStoreController extends Controller
         unset($request['draft']);
         unset($request['publish']);
         $petugas = ','.implode(",", request('nama')).',';
-        $request['app'] = auth()->user()->app;
+        $request['app'] = auth()->user()->app ?: request('app');
         $request['petugas'] = $petugas;
         $request['published'] = request('publish') ? true : false;
         if (!empty(request('nama')))
