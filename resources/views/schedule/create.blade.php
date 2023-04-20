@@ -10,6 +10,17 @@
         <div class="card-body">
           <form action="{{route('schedule.store')}}" method="post">
             @csrf
+            @if (auth()->user()->role == 'admin')
+              <div class="mb-4">
+                <x-input-label for="app" :value="__('App')" />
+                <select id="app" name="app" class="select select-accent w-full mt-2 bg-white dark:bg-gray-800">
+                  <option value="prodiakon">prodiakon</option>
+                  <option value="misdinar">misdinar</option>
+                  <option value="pasdior">pasdior</option>
+                  <option value="tatib">tatib</option>
+                </select>
+              </div>
+            @endif
             <x-datepicker :name="__('tgl_jadwal')" :value="old('tgl_jadwal')" :placeholder="__('Pilih Tanggal')">
               <x-input-label for="datepickerId" :value="__('Tanggal Tugas')" />
             </x-datepicker>

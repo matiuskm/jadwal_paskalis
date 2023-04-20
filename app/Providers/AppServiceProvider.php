@@ -26,5 +26,8 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('create_tweet', function(User $user) {
             return $user->role == 'moderator' || $user->role == 'admin';
         });
+        Gate::define('buat_jadwal', function(User $user) {
+            return $user->role == 'moderator' || $user->role == 'admin';
+        });
     }
 }

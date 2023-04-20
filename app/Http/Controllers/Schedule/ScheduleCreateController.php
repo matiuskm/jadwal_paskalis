@@ -13,7 +13,9 @@ class ScheduleCreateController extends Controller
      */
     public function __invoke()
     {
-        $nama = User::where('status', true)->where('app', auth()->user()->app)->where('role', '!=', 'admin')->get();
+        if (auth()->user()->role == 'admin')
+            $nama = User::where('status', true)->where('role', '!=', 'admin')->get();
+        else $nama = User::where('status', true)->where('app', auth()->user()->app)->where('role', '!=', 'admin')->get();
         
         return view('schedule.create', ['nama'=>$nama]); 
     }

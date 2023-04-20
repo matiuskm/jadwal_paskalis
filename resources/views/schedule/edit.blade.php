@@ -11,6 +11,17 @@
           <form action="{{ route('schedule.update', $schedule->id) }}" method="post">
             @csrf
             @method("PUT")
+            @if (auth()->user()->role == 'admin')
+              <div class="mb-4">
+                <x-input-label for="app" :value="__('App')" />
+                <select id="app" name="app" class="select select-accent w-full mt-2 bg-white dark:bg-gray-800">
+                  <option value="prodiakon" @if (old('app', $schedule->app) == "prodiakon") {{"selected"}} @endif>prodiakon</option>
+                  <option value="misdinar" @if (old('app', $schedule->app) == "misdinar") {{"selected"}} @endif>misdinar</option>
+                  <option value="pasdior" @if (old('app', $schedule->app) == "pasdior") {{"selected"}} @endif>pasdior</option>
+                  <option value="tatib" @if (old('app', $schedule->app) == "tatib") {{"selected"}} @endif>tatib</option>
+                </select>
+              </div>
+            @endif
             <x-datepicker :name="__('tgl_jadwal')" :value="old('tgl_jadwal', $schedule->tgl_jadwal)" :placeholder="__('Pilih Tanggal')">
               <x-input-label for="datepickerId" :value="__('Tanggal Tugas')" />
             </x-datepicker>
