@@ -2,6 +2,8 @@ import "./bootstrap";
 import "flowbite";
 import "flowbite-datepicker";
 
+import.meta.glob(["../images/**"]);
+
 import Alpine from "alpinejs";
 import Datepicker from "flowbite-datepicker/Datepicker";
 import id from "../../node_modules/flowbite-datepicker/js/i18n/locales/id.js";
