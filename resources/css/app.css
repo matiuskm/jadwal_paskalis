@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+
+body {
+    font-family: "Inter", "Arial", sans-serif;
+}
+
+[x-cloak] {
+    display: none;
+}
+
+.svg-icon {
+    width: 1em;
+    height: 1em;
+}
+
+.svg-icon path,
+.svg-icon polygon,
+.svg-icon rect {
+    fill: #333;
+}
+
+.svg-icon circle {
+    stroke: #4691f6;
+    stroke-width: 1;
+}
+
+.warna-putih {
+    background-color: white;
+    color: gray;
+}
+
+.warna-merah {
+    background-color: #ef7171;
+    color: white;
+}
+
+.warna-pink {
+    background-color: #da44aa;
+    color: white;
+}
+
+.warna-ungu {
+    background-color: #5435b9;
+    color: white;
+}
+
+.warna-hijau {
+    background-color: #4db3a5;
+    color: white;
+}
