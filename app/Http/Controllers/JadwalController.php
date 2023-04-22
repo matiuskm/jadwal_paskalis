@@ -37,13 +37,12 @@ class JadwalController extends Controller
 
         // declare jadwal logged in user
         if (auth()->user()->role == 'admin')
-            $jadwal = Schedule::where(DB::raw('timestamp(tgl_jadwal, jam_jadwal)'), '>=', date('Y-m-d H:i'))
-                        ->where('published', true)
-                        ->get();
+            $jadwal = null;
         else if (auth()->user()->role == 'moderator')
             $jadwal = Schedule::where(DB::raw('timestamp(tgl_jadwal, jam_jadwal)'), '>=', date('Y-m-d H:i'))
                         ->where('app', auth()->user()->app)
                         ->where('published', true)
+                        ->where('petugas', 'like', '%,'.auth()->user()->id.',%')
                         ->get();
         else $jadwal = Schedule::where(DB::raw('timestamp(tgl_jadwal, jam_jadwal)'), '>=', date('Y-m-d H:i'))
                         ->where('published', true)

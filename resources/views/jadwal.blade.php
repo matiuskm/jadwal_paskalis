@@ -31,11 +31,11 @@
         @foreach ($jadwal_buka as $j)
           <div class="grid card bg-white dark:bg-base-300 rounded-box place-items-center mt-5">
             <div class="card w-full text-primary-content dark:text-white">
-              <div class="card-body text-gray-800">
+              <div class="card-body text-gray-300">
                 <h1 class="card-title">{{ Carbon\Carbon::parse($j->tgl_jadwal)->isoFormat('dddd, D-MMM-YYYY') }} {{ $j->jam_jadwal }}</h1>
                 <p class="text-sm">Lokasi: {{$j->lokasi}}</p>
                 <div class="divider"></div>
-                <a href="{{ route('schedule.assign', $j->id) }}" class="btn btn-accent" onclick="return confirm('Apakah Anda yakin akan mengambil jadwal?')">Saya ambil jadwalnya</a>
+                <a href="{{ route('schedule.assign', $j->id) }}" class="btn btn-primary" onclick="return confirm('Apakah Anda yakin akan mengambil jadwal?')">Saya ambil jadwalnya</a>
               </div>
             </div>
           </div>
@@ -84,7 +84,7 @@
                 </ol>
                 <p class="text-xs mt-5"><span class="font-black">Status: </span> @if ($j->status == 'open') {{"Petugas masih kurang ".($j->jml_petugas - count($j->petugas))." orang."}} @else {{"Petugas lengkap."}} @endif {{ '('.count($j->petugas).'/'.$j->jml_petugas.')' }}</p>
                 <div class="divider"></div>
-                <a href="{{ route('schedule.release', $j->id) }}" class="btn btn-error" onclick="return confirm('Apakah Anda yakin akan melepas jadwal?')">Saya lepas jadwal ini</a>
+                <a href="{{ route('schedule.release', $j->id) }}" class="btn btn-accent-content" onclick="return confirm('Apakah Anda yakin akan melepas jadwal?')">Saya lepas jadwal ini</a>
               </div>
             </div>
           </div>
