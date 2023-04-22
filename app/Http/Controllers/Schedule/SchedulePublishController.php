@@ -6,15 +6,17 @@ use App\Http\Controllers\Controller;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
 
-class ScheduleDeleteController extends Controller
+class SchedulePublishController extends Controller
 {
     /**
      * Handle the incoming request.
      */
     public function __invoke($id)
     {
-        Schedule::findOrFail($id)->delete();
+        Schedule::find($id)->update([
+                'published' => true,
+            ]);
 
-        return redirect()->route('jadwal')->with('success', 'Jadwal berhasil dihapus.');
+        return redirect('jadwal')->with('success', 'Jadwal sudah dipublish.');
     }
 }

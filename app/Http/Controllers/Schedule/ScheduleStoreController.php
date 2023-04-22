@@ -23,6 +23,12 @@ class ScheduleStoreController extends Controller
             'publish' => ['nullable'],
             'nama' => ['nullable']
         ]);
+        $exists_schedule = Schedule::where('app', auth()->user()->app ?: request('app'))
+                ->where('tgl_jadwal', request('tgl_jadwal'))
+                ->where('jam_jadwal', request('jam_jadwal'))
+                ->where('lokasi', request('lokasi'))->exists();
+        if ($exists_schedule) return redirect()->route('schedule.create')->with('error', 'Jadwal sudah pernah dibuat.');
+
         unset($request['nama']);
         unset($request['draft']);
         unset($request['publish']);
@@ -35,7 +41,7 @@ class ScheduleStoreController extends Controller
         
         Schedule::create($request);
 
-        return redirect()->route('schedule.create')->with('status', 'schedule-created');
+        return redirect()->route('schedule.create')->with('success', 'Jadwal berhasil dibuat.');
         return redirect()->back();
     }
 }

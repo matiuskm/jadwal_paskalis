@@ -11,11 +11,13 @@
                 </div>
 
                 <!-- Navigation Links -->
+                @if(in_array(auth()->user()->role, ['admin', 'moderator']))
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('timeline')" :active="request()->routeIs('timeline')">
-                        {{ __('Timeline') }}
+                    <x-nav-link :href="route('register')" :active="request()->routeIs('register')">
+                        {{ __('Buat user baru') }}
                     </x-nav-link>
                 </div>
+                @endif
             </div>
 
             <!-- Settings Dropdown -->

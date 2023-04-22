@@ -2,9 +2,12 @@
 
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Schedule\ScheduleAssignController;
 use App\Http\Controllers\Schedule\ScheduleCreateController;
 use App\Http\Controllers\Schedule\ScheduleDeleteController;
 use App\Http\Controllers\Schedule\ScheduleEditController;
+use App\Http\Controllers\Schedule\SchedulePublishController;
+use App\Http\Controllers\Schedule\ScheduleReleaseController;
 use App\Http\Controllers\Schedule\ScheduleStoreController;
 use App\Http\Controllers\Schedule\ScheduleUpdateController;
 use App\Http\Controllers\TimelineController;
@@ -40,6 +43,9 @@ Route::middleware('auth')->group(function () {
     Route::get('schedule', ScheduleCreateController::class)->middleware('can:buat_jadwal')->name('schedule.create');
     Route::post('schedule', ScheduleStoreController::class)->middleware('can:buat_jadwal')->name('schedule.store');
     Route::get('schedule/{id}/edit', ScheduleEditController::class)->middleware('can:buat_jadwal')->name('schedule.edit');
+    Route::get('schedule/{id}/assign', ScheduleAssignController::class)->name('schedule.assign');
+    Route::get('schedule/{id}/release', ScheduleReleaseController::class)->name('schedule.release');
+    Route::get('schedule/{id}/publish', SchedulePublishController::class)->middleware('can:buat_jadwal')->name('schedule.publish');
     Route::put('schedule/{id}', ScheduleUpdateController::class)->middleware('can:buat_jadwal')->name('schedule.update');
     Route::delete('schedule/{id}', ScheduleDeleteController::class)->middleware('can:buat_jadwal')->name('schedule.destroy');
 
