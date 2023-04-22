@@ -15,6 +15,10 @@ use App\Http\Controllers\Tweet\TweetDeleteController;
 use App\Http\Controllers\Tweet\TweetEditController;
 use App\Http\Controllers\Tweet\TweetStoreController;
 use App\Http\Controllers\Tweet\TweetUpdateController;
+use App\Http\Controllers\User\UserDestroyController;
+use App\Http\Controllers\User\UserEditController;
+use App\Http\Controllers\User\UserIndexController;
+use App\Http\Controllers\User\UserUpdateController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,6 +56,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/users', UserIndexController::class)->name('user.index');
+    Route::get('/users/{id}/edit', UserEditController::class)->name('user.edit');
+    Route::patch('/users/{id}', UserUpdateController::class)->name('user.update');
+    Route::delete('/users/{id}', UserDestroyController::class)->name('user.destroy');
 });
 
 require __DIR__.'/auth.php';
