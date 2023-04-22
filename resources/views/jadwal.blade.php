@@ -30,8 +30,8 @@
       @else
         @foreach ($jadwal_buka as $j)
           <div class="grid card bg-white dark:bg-base-300 rounded-box place-items-center mt-5">
-            <div class="card w-full text-primary-content text-base-300 dark:text-white">
-              <div class="card-body">
+            <div class="card w-full text-primary-content dark:text-white">
+              <div class="card-body text-gray-800">
                 <h1 class="card-title">{{ Carbon\Carbon::parse($j->tgl_jadwal)->isoFormat('dddd, D-MMM-YYYY') }} {{ $j->jam_jadwal }}</h1>
                 <p class="text-sm">Lokasi: {{$j->lokasi}}</p>
                 <div class="divider"></div>
