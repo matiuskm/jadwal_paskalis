@@ -31,7 +31,10 @@
                                     {{ __('Buat User baru') }}
                                 </x-dropdown-link>
                                 <x-dropdown-link :href="route('user.index')">
-                                    {{ __('Daftar User') }}
+                                    {{ __('Lihat Daftar User') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('activity.index')">
+                                    {{ __('Lihat Aktivitas User') }}
                                 </x-dropdown-link>
                             </x-slot>
                         </x-dropdown>
@@ -101,7 +104,10 @@
                 </x-responsive-nav-link>
 
                 <x-responsive-nav-link :href="route('user.index')">
-                    {{ __('Daftar User') }}
+                    {{ __('Lihat Daftar User') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('activity.index')">
+                    {{ __('Lihat Aktivitas User') }}
                 </x-responsive-nav-link>
             </div>
         </div>

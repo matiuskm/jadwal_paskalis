@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Schedule;
 
 use App\Http\Controllers\Controller;
+use App\Models\Activity;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,13 @@ class ScheduleAssignController extends Controller
                         'petugas' => $persons,
                         'status' => $schedule->jml_petugas > $old_persons ? 'open' : 'close'
                     ]);
-    
+
+        Activity::create([
+            'action' => "assign",
+            'user_id' => auth()->user()->id,
+            'schedule_id' => $id
+        ]);
+            
         return redirect('jadwal')->with('success', "Jadwal berhasil diambil, silakan cek jadwal Anda yang baru.");
     }
 }

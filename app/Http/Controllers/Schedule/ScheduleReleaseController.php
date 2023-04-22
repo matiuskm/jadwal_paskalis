@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Schedule;
 
 use App\Http\Controllers\Controller;
+use App\Models\Activity;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
 
@@ -21,6 +22,12 @@ class ScheduleReleaseController extends Controller
                     'petugas' => $persons,
                     'status' => $schedule->jml_petugas > count($updated) ? 'open' : 'close'
                 ]);
+        
+        Activity::create([
+            'action' => "release",
+            'user_id' => auth()->user()->id,
+            'schedule_id' => $id
+        ]);
         
         return redirect('jadwal')->with('success', "Tugas sudah dilepaskan.");
     }

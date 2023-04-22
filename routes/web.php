@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Activity\ActivityIndexController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Schedule\ScheduleAssignController;
@@ -18,6 +19,7 @@ use App\Http\Controllers\Tweet\TweetUpdateController;
 use App\Http\Controllers\User\UserDestroyController;
 use App\Http\Controllers\User\UserEditController;
 use App\Http\Controllers\User\UserIndexController;
+use App\Http\Controllers\User\UserResetController;
 use App\Http\Controllers\User\UserUpdateController;
 use Illuminate\Support\Facades\Route;
 
@@ -59,8 +61,11 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/users', UserIndexController::class)->name('user.index');
     Route::get('/users/{id}/edit', UserEditController::class)->name('user.edit');
+    Route::get('/users/{id}/reset', UserResetController::class)->name('user.reset');
     Route::patch('/users/{id}', UserUpdateController::class)->name('user.update');
     Route::delete('/users/{id}', UserDestroyController::class)->name('user.destroy');
+
+    Route::get('activities', ActivityIndexController::class)->name('activity.index');
 });
 
 require __DIR__.'/auth.php';
