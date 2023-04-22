@@ -37,7 +37,7 @@ class JadwalController extends Controller
 
         // declare jadwal logged in user
         if (auth()->user()->role == 'admin')
-            $jadwal = null;
+            $jadwal = [];
         else if (auth()->user()->role == 'moderator')
             $jadwal = Schedule::where(DB::raw('timestamp(tgl_jadwal, jam_jadwal)'), '>=', date('Y-m-d H:i'))
                         ->where('app', auth()->user()->app)
@@ -49,7 +49,7 @@ class JadwalController extends Controller
                         ->where('app', auth()->user()->app)
                         ->where('petugas', 'like', '%,'.auth()->user()->id.',%')
                         ->get();
-        if (!is_null($jadwal))
+        if (!empty($jadwal))
             foreach($jadwal as $j) {
                 $nama = User::select('name')->whereIn('id', explode(',', substr($j->petugas, 1, -1)))->get();
                 if (!empty($nama))
@@ -59,14 +59,14 @@ class JadwalController extends Controller
             }
 
         // declare semua jadwal untuk admin dan moderator
-        $all_jadwal = null;
+        $all_jadwal = [];
         if (auth()->user()->role == 'admin')
             $all_jadwal = Schedule::where(DB::raw('timestamp(tgl_jadwal, jam_jadwal)'), '>=', date('Y-m-d H:i'))->get();
         else if (auth()->user()->role == 'moderator')
             $all_jadwal = Schedule::where(DB::raw('timestamp(tgl_jadwal, jam_jadwal)'), '>=', date('Y-m-d H:i'))
                     ->where('app', auth()->user()->app)
                     ->get();
-        if (!is_null($all_jadwal))
+        if (!empty($all_jadwal))
             foreach($all_jadwal as $j) {
                 $nama = User::select('name')->whereIn('id', explode(',', substr($j->petugas, 1, -1)))->get();
                 if (!empty($nama))
