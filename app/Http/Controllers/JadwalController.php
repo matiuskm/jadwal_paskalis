@@ -49,14 +49,14 @@ class JadwalController extends Controller
                         ->where('app', auth()->user()->app)
                         ->where('petugas', 'like', '%,'.auth()->user()->id.',%')
                         ->get();
-
-        foreach($jadwal as $j) {
-            $nama = User::select('name')->whereIn('id', explode(',', substr($j->petugas, 1, -1)))->get();
-            if (!empty($nama))
-                $j->petugas = $nama;
-            else
-                $j->petugas = null;
-        }
+        if (!is_null($jadwal))
+            foreach($jadwal as $j) {
+                $nama = User::select('name')->whereIn('id', explode(',', substr($j->petugas, 1, -1)))->get();
+                if (!empty($nama))
+                    $j->petugas = $nama;
+                else
+                    $j->petugas = null;
+            }
 
         // declare semua jadwal untuk admin dan moderator
         $all_jadwal = null;
