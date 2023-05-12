@@ -35,6 +35,7 @@ class ScheduleUpdateController extends Controller
         $request['published'] = request('publish') ? true : false;
         if (!empty(request('nama')))
             $request['status'] = count($petugas) < request('jml_petugas') ? 'open' : 'close';
+        else $request['status'] = "open";
 
         $schedule->update($request);
         return redirect()->route('jadwal')->with('status', 'schedule-created');
