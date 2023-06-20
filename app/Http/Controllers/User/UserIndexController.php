@@ -14,8 +14,8 @@ class UserIndexController extends Controller
     public function __invoke()
     {
         if (auth()->user()->role == 'admin')
-            $users = User::all();
-        else $users = User::where('app', auth()->user()->app)->get();
+            $users = User::paginate(10);
+        else $users = User::where('app', auth()->user()->app)->paginate(10);
 
         return view('user.index', ['users' => $users]);
     }
