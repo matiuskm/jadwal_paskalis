@@ -70,7 +70,7 @@
                         $apps = [auth()->user()->app];
                     } else {
                         $apps = [
-                            'prodiakon', 'pasdior', 'misdinar', 'tatib'
+                            'prodiakon', 'pasdior', 'misdinar', 'tatib', 'lektor'
                         ];
                     }
                 @endphp
