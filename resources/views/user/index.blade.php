@@ -57,7 +57,7 @@
                   </a>
                 @endcan        
                 @can('delete', $u)
-                  <form action="{{route('user.destroy', $u->id)}}" method="post">
+                  <form action="{{route('user.destroy', $u->id)}}" method="post" class="inline">
                     @csrf
                     @method('DELETE')
                     <button class="btn btn-square btn-sm" type="submit" title="Non aktifkan user" onclick="return confirm('Apakah Anda yakin akan menonaktifkan user {{$u->username}}?')">
