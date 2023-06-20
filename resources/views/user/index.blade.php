@@ -24,7 +24,7 @@
     @endif
 
     <div class="md:max-w-2xl mx-auto sm:px-6 lg:px-8 overflow-x-auto">
-      <table class="table md:w-full" style="margin-bottom: 20px">
+      <table class="table w-full" style="margin-bottom: 20px">
         <thead>
           <tr>
             <th></th>
